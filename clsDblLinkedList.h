@@ -161,5 +161,41 @@ public:
 			DeleteFirstNode();
 		}
 	}
+
+	void Reverse()
+	{
+		Node* current = head;
+		Node* temp = NULL;
+		while (current != NULL)
+		{
+			temp = current->prev;
+			current->prev = current->next;
+			current->next = temp;
+			current = current->prev;
+		}
+		if (temp != NULL) // if we have a single node in the list
+		{
+			head = temp->prev;
+		}
+	}
+
+	Node* GetNode(int index)
+	{
+		int counter = 0;
+		if (index > _size - 1 || index < 0)
+			return NULL;
+
+
+		Node* current = head;
+		while (current != NULL)
+		{
+			if (counter == index)
+				break;
+
+			counter++;
+			current = current->next;
+		}
+		return current;
+	}
 };
 
