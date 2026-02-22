@@ -1,4 +1,3 @@
-
 #pragma once
 #include <iostream>
 
@@ -9,8 +8,8 @@ class clsDblLinkedList
 {
 
 protected:
-
-
+	int _size = 0;
+	
 public:
 
 	class Node {
@@ -32,7 +31,7 @@ public:
 		cout << "\n";
 	}
 
-	Node* Find(T value) {
+	Node * Find(T value) {
 		Node* current = head;
 		while (current != NULL)
 		{
@@ -44,7 +43,7 @@ public:
 		}
 	}
 
-	void InsertAtBeginning(T value) {
+	void InsertAtBeginning(T value){
 		Node* newNode = new Node();
 		newNode->value = value;
 		newNode->next = head;
@@ -54,10 +53,10 @@ public:
 			head->prev = newNode;
 
 		head = newNode;
-	
+		_size++;
 	}
 
-	void InsertAfter(Node* prevNode, T value) {
+	void InsertAfter(Node* prevNode, T value){
 		Node* newNode = new Node();
 		newNode->value = value;
 		newNode->next = prevNode->next;
@@ -67,6 +66,7 @@ public:
 		if (newNode->next != NULL)
 			newNode->next->prev = newNode;
 
+		_size++;
 	}
 
 	void InsertAtEnd(T value) {
@@ -76,7 +76,7 @@ public:
 		if (head == NULL) {
 			newNode->prev = NULL;
 			head = newNode;
-			
+			_size++;
 			return;
 		}
 		else
@@ -89,7 +89,7 @@ public:
 			newNode->prev = current;
 		}
 
-		
+		_size++;
 	}
 
 	void DeleteNode(Node* Node) {
@@ -102,7 +102,7 @@ public:
 		if (Node->prev != NULL)
 			Node->prev->next = Node->next;
 		delete Node;
-		
+		_size--;
 
 	}
 
@@ -118,9 +118,9 @@ public:
 			head->prev = NULL;
 		}
 		delete temp;
-		
+		_size--;
 	}
-
+	
 	void DeleteLastNode() {
 		if (head == NULL)
 		{
@@ -130,7 +130,7 @@ public:
 		{
 			delete head;
 			head = NULL;
-		
+			_size--;
 			return;
 		}
 		Node* current = head;
@@ -141,6 +141,13 @@ public:
 		Node* temp = current->next;
 		current->next = NULL;
 		delete temp;
-		
+		_size--;
+	}
+
+	int Size()
+	{
+		return _size;
 	}
 };
+
+
