@@ -197,5 +197,26 @@ public:
 		}
 		return current;
 	}
+
+	T GetItem(int index)
+	{
+		Node* ItemNode = GetNode(index);
+
+		return (ItemNode == NULL ? T() : ItemNode->value);
+	}
+
+	bool UpdateItem(int index, T value)
+	{
+		Node* ItemNode = GetNode(index);
+
+		if (ItemNode != NULL)
+		{
+			ItemNode->value = value;
+			return true;
+		}
+		else
+			return false;
+
+	}
 };
 
