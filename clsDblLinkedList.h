@@ -148,6 +148,10 @@ public:
 	{
 		return _size;
 	}
+	
+	bool IsEmpty()
+	{
+		return (_size == 0 ? true : false);
+	}
 };
-
 
